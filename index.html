@@ -1,0 +1,199 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Personal Learning Tracker</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="hero">
+  <div class="container">
+    <div class="brand">
+      <div class="logo">LT</div>
+      <div>
+        <p class="brand-title">PERSONAL GROWTH</p>
+        <p class="brand-subtitle">Your daily progress companion</p>
+      </div>
+    </div>
+    <h1>Personal Learning Tracker</h1>
+    <p class="hero-description">
+      Choose a date, complete your tasks, and watch your progress grow.
+    </p>
+  </div>
+</header>
+
+<main class="container main-content">
+
+  <section class="stats-grid">
+    <div class="stat-card">
+      <p class="stat-label">Monthly Completion</p>
+      <h2 id="overallPercent">0%</h2>
+      <div class="progress-track"><div id="overallBar" class="progress-fill"></div></div>
+      <p class="stat-note">Completed tasks this month</p>
+    </div>
+
+    <div class="stat-card">
+      <p class="stat-label">Completed Tasks</p>
+      <h2 id="completedCount">0 / 93</h2>
+      <p class="stat-note">Three tasks per day</p>
+    </div>
+
+    <div class="stat-card">
+      <p class="stat-label">Average Progress</p>
+      <h2 id="averagePercent" class="purple-text">0%</h2>
+      <div class="progress-track"><div id="averageBar" class="progress-fill purple-fill"></div></div>
+      <p class="stat-note">Average across all three tasks</p>
+    </div>
+
+    <div class="stat-card dark-card">
+      <p class="stat-label light-text">Monthly Benchmark</p>
+      <h2 id="targetStatus" class="mint-text">0%</h2>
+      <div class="benchmark-track">
+        <div id="benchmarkBar" class="benchmark-fill"></div>
+        <span class="target-marker"></span>
+      </div>
+      <div class="benchmark-labels">
+        <span>0%</span><span>Target 80%</span><span>100%</span>
+      </div>
+      <p id="targetMessage" class="stat-note light-text">Your target is 80%.</p>
+    </div>
+  </section>
+
+  <section class="panel">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">YOUR SCHEDULE</p>
+        <h2>Monthly Calendar</h2>
+        <p class="muted">Select any date to update its tasks and progress.</p>
+      </div>
+      <button id="todayButton" class="secondary-button">Today</button>
+    </div>
+
+    <div class="calendar-toolbar">
+      <button id="prevMonth" class="nav-button" aria-label="Previous month">❮</button>
+      <div class="month-heading">
+        <h3 id="monthTitle">October 2026</h3>
+        <p id="monthSubtitle">Choose your date</p>
+      </div>
+      <button id="nextMonth" class="nav-button" aria-label="Next month">❯</button>
+    </div>
+
+    <div class="calendar-legend">
+      <span><i class="legend-dot selected-dot"></i> Selected</span>
+      <span><i class="legend-dot complete-dot"></i> All tasks completed</span>
+      <span><i class="legend-dot partial-dot"></i> In progress</span>
+      <span><i class="legend-dot missed-dot"></i> Not completed</span>
+    </div>
+
+    <div id="calendarGrid" class="calendar-grid">
+      <div class="weekday">SUN</div>
+      <div class="weekday">MON</div>
+      <div class="weekday">TUE</div>
+      <div class="weekday">WED</div>
+      <div class="weekday">THU</div>
+      <div class="weekday">FRI</div>
+      <div class="weekday">SAT</div>
+    </div>
+  </section>
+
+  <section class="panel">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">DAILY CHECKLIST</p>
+        <h2 id="selectedDateTitle">Select a date</h2>
+        <p id="selectedDateSubtitle" class="muted">Track your daily tasks.</p>
+      </div>
+      <div id="dailyBadge" class="daily-badge">0 / 3 Done</div>
+    </div>
+
+    <div class="task-list">
+      <div class="task-card">
+        <div class="task-icon study-icon">01</div>
+        <div class="task-information">
+          <h3>Focused Study</h3>
+          <p>Study and learn something useful.</p>
+        </div>
+        <div class="task-actions">
+          <button class="mark-button yes" data-task="0" data-value="yes" aria-label="Complete focused study">✓</button>
+          <button class="mark-button no" data-task="0" data-value="no" aria-label="Not completed focused study">✕</button>
+        </div>
+      </div>
+
+      <div class="task-card">
+        <div class="task-icon plan-icon">02</div>
+        <div class="task-information">
+          <h3>Plan the Day</h3>
+          <p>Organize your daily goals and priorities.</p>
+        </div>
+        <div class="task-actions">
+          <button class="mark-button yes" data-task="1" data-value="yes" aria-label="Complete planning">✓</button>
+          <button class="mark-button no" data-task="1" data-value="no" aria-label="Planning not completed">✕</button>
+        </div>
+      </div>
+
+      <div class="task-card">
+        <div class="task-icon review-icon">03</div>
+        <div class="task-information">
+          <h3>Review Progress</h3>
+          <p>Review your learning and daily achievements.</p>
+        </div>
+        <div class="task-actions">
+          <button class="mark-button yes" data-task="2" data-value="yes" aria-label="Complete review">✓</button>
+          <button class="mark-button no" data-task="2" data-value="no" aria-label="Review not completed">✕</button>
+        </div>
+      </div>
+    </div>
+
+    <p class="instruction">✓ = Completed · ✕ = Not completed. Click the selected mark again to clear it.</p>
+
+    <div class="daily-progress">
+      <div class="progress-heading">
+        <span>Selected Day Progress</span>
+        <strong id="dailyPercent">0%</strong>
+      </div>
+      <div class="progress-track"><div id="dailyBar" class="progress-fill"></div></div>
+    </div>
+
+    <div id="successMessage" class="success-message hidden" role="status" aria-live="polite">
+      <span class="success-emoji">🎉</span>
+      <div>
+        <h3>Excellent Work!</h3>
+        <p>You completed all three tasks for this day!</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel">
+    <p class="eyebrow">YOUR PERFORMANCE</p>
+    <h2>Task-wise Monthly Progress</h2>
+    <p class="muted">See the percentage of days each task was completed.</p>
+
+    <div class="category-progress">
+      <div class="progress-heading"><span>Focused Study</span><strong id="taskPercent0">0%</strong></div>
+      <div class="progress-track"><div id="taskBar0" class="progress-fill"></div></div>
+    </div>
+
+    <div class="category-progress">
+      <div class="progress-heading"><span>Plan the Day</span><strong id="taskPercent1">0%</strong></div>
+      <div class="progress-track"><div id="taskBar1" class="progress-fill purple-fill"></div></div>
+    </div>
+
+    <div class="category-progress">
+      <div class="progress-heading"><span>Review Progress</span><strong id="taskPercent2">0%</strong></div>
+      <div class="progress-track"><div id="taskBar2" class="progress-fill orange-fill"></div></div>
+    </div>
+  </section>
+
+  <footer>
+    <p>Personal Learning Tracker</p>
+    <p class="footer-note">HTML · CSS · Tailwind CSS · JavaScript</p>
+  </footer>
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
